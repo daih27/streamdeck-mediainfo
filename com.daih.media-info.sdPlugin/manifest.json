@@ -1,0 +1,102 @@
+{
+	"Name": "Media Info",
+	"Version": "0.1.0.0",
+	"Author": "Daih",
+	"Actions": [
+		{
+			"UUID": "com.daih.media-info.song-artist",
+			"Name": "Song and Artist",
+			"Tooltip": "Displays current song name and artist name",
+			"Icon": "imgs/plugin/music",
+			"States": [
+				{
+					"Image": "",
+					"Title": "",
+					"FontSize": 11,
+					"FontFamily": "Arial",
+					"TitleAlignment": "middle"
+				}
+			]
+		},
+		{
+			"UUID": "com.daih.media-info.album",
+			"Name": "Album",
+			"Tooltip": "Displays current album name",
+			"Icon": "imgs/plugin/music",
+			"States": [
+				{
+					"Image": "",
+					"Title": "",
+					"FontSize": 11,
+					"FontFamily": "Arial",
+					"TitleAlignment": "middle"
+				}
+			]
+		},
+		{
+			"UUID": "com.daih.media-info.song",
+			"Name": "Song",
+			"Tooltip": "Displays current song name",
+			"Icon": "imgs/plugin/music",
+			"States": [
+				{
+					"Image": "",
+					"Title": "",
+					"FontSize": 11,
+					"FontFamily": "Arial",
+					"TitleAlignment": "middle"
+				}
+			]
+		},
+		{
+			"UUID": "com.daih.media-info.artist",
+			"Name": "Artist",
+			"Tooltip": "Displays current artist name",
+			"Icon": "imgs/plugin/music",
+			"States": [
+				{
+					"Image": "",
+					"Title": "",
+					"FontSize": 11,
+					"FontFamily": "Arial",
+					"TitleAlignment": "middle"
+				}
+			]
+		},
+		{
+			"UUID": "com.daih.media-info.thumbnail",
+			"Name": "Media Thumbnail",
+			"Tooltip": "Displays current media thumbnail",
+			"Icon": "imgs/plugin/music",
+			"States": [
+				{
+					"Image": "",
+					"Title": "",
+					"FontSize": 11,
+					"FontFamily": "Arial",
+					"TitleAlignment": "middle"
+				}
+			]
+		}
+	],
+	"Category": "Media Info",
+	"CategoryIcon": "imgs/plugin/music",
+	"CodePath": "bin/plugin.js",
+	"Description": "Shows the current playing media info",
+	"Icon": "imgs/plugin/music",
+	"SDKVersion": 2,
+	"Software": {
+		"MinimumVersion": "6.4"
+	},
+	"OS": [
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "20",
+		"Debug": "enabled"
+	},
+	"UUID": "com.daih.media-info"
+}
