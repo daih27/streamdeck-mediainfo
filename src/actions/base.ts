@@ -44,6 +44,7 @@ export abstract class MediaInfoAction<T extends MediaInfo> extends SingletonActi
             this.startScrolling(ev);
         } catch (error) {
             console.error("Failed to initialize WebSocket or fetch media info:", error);
+            await ev.action.setImage("imgs/plugin/transparent");
             await ev.action.setTitle("Error");
         }
     }
@@ -66,6 +67,7 @@ export abstract class MediaInfoAction<T extends MediaInfo> extends SingletonActi
             const mediaInfo = await response.json() as T;
             if (mediaInfo.error) {
                 console.error("Error from Server:", mediaInfo.error);
+                await ev.action.setImage("imgs/plugin/transparent");
                 await ev.action.setTitle("Error");
                 return;
             }
@@ -80,6 +82,7 @@ export abstract class MediaInfoAction<T extends MediaInfo> extends SingletonActi
             this.updateDisplayedText(ev);
         } catch (error) {
             console.error("Failed to update media info:", error);
+            await ev.action.setImage("imgs/plugin/transparent");
             await ev.action.setTitle("Error");
         }
     }
@@ -122,6 +125,7 @@ export abstract class MediaInfoAction<T extends MediaInfo> extends SingletonActi
             } else {
                 title = `${displayedTitle}\n\n${displayedArtist}`;
             }
+            await ev.action.setImage("imgs/plugin/transparent");
             await ev.action.setTitle(title);
         } else {
             let displayedText = this.text;
@@ -137,6 +141,7 @@ export abstract class MediaInfoAction<T extends MediaInfo> extends SingletonActi
             }
 
             const title = `${displayedText}`;
+            await ev.action.setImage("imgs/plugin/transparent");
             await ev.action.setTitle(title);
         }
     }

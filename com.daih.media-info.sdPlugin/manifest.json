@@ -10,7 +10,7 @@
 			"Icon": "imgs/plugin/music",
 			"States": [
 				{
-					"Image": "",
+					"Image": "imgs/plugin/music",
 					"Title": "",
 					"FontSize": 11,
 					"FontFamily": "Arial",
@@ -25,7 +25,7 @@
 			"Icon": "imgs/plugin/music",
 			"States": [
 				{
-					"Image": "",
+					"Image": "imgs/plugin/music",
 					"Title": "",
 					"FontSize": 11,
 					"FontFamily": "Arial",
@@ -40,7 +40,7 @@
 			"Icon": "imgs/plugin/music",
 			"States": [
 				{
-					"Image": "",
+					"Image": "imgs/plugin/music",
 					"Title": "",
 					"FontSize": 11,
 					"FontFamily": "Arial",
@@ -55,7 +55,7 @@
 			"Icon": "imgs/plugin/music",
 			"States": [
 				{
-					"Image": "",
+					"Image": "imgs/plugin/music",
 					"Title": "",
 					"FontSize": 11,
 					"FontFamily": "Arial",
@@ -70,7 +70,7 @@
 			"Icon": "imgs/plugin/music",
 			"States": [
 				{
-					"Image": "",
+					"Image": "imgs/plugin/music",
 					"Title": "",
 					"FontSize": 11,
 					"FontFamily": "Arial",
