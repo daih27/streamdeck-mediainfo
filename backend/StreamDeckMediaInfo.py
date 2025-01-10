@@ -7,6 +7,19 @@ import io
 import signal
 
 sio = socketio.AsyncServer(async_mode="aiohttp", cors_allowed_origins="*")
+thumbnail_cache = {}
+
+async def get_thumbnail_bytes(thumb_stream_ref):
+    if thumb_stream_ref:
+        thumb_read_buffer = Buffer(5000000)
+        await read_stream_into_buffer(thumb_stream_ref, thumb_read_buffer)
+        buffer_reader = DataReader.from_buffer(thumb_read_buffer)
+        byte_buffer = bytearray(thumb_read_buffer.length)
+        buffer_reader.read_bytes(byte_buffer)
+        buffer_reader.detach_buffer()
+        buffer_reader.close()
+        return byte_buffer
+    return None
 
 async def get_media_info():
     sessions = await MediaManager.request_async()
@@ -34,18 +47,21 @@ async def media_info_api(request):
 async def thumbnail_api(request):
     try:
         current_media_info = await get_media_info()
-        thumb_stream_ref = current_media_info.get('thumbnail')
-        if thumb_stream_ref:
-            thumb_read_buffer = Buffer(5000000)
-            await read_stream_into_buffer(thumb_stream_ref, thumb_read_buffer)
-            buffer_reader = DataReader.from_buffer(thumb_read_buffer)
-            byte_buffer = bytearray(thumb_read_buffer.length)
-            buffer_reader.read_bytes(byte_buffer)
-            buffer_reader.detach_buffer()
-            buffer_reader.close()
-            return web.Response(body=byte_buffer, content_type='image/jpeg')
+        media_id = current_media_info.get("title") + current_media_info.get("artist")
+        if not media_id:
+            return web.json_response({'error': 'No media available'}, status=404)
+
+        if media_id in thumbnail_cache:
+            thumbnail_bytes = thumbnail_cache[media_id]
+            return web.Response(body=thumbnail_bytes, content_type='image/jpeg')
         else:
-            return web.json_response({'error': 'No thumbnail available'}, status=404)
+            thumb_stream_ref = current_media_info.get('thumbnail')
+            thumbnail_bytes = await get_thumbnail_bytes(thumb_stream_ref)
+            if thumbnail_bytes:
+                thumbnail_cache[media_id] = thumbnail_bytes
+                return web.Response(body=thumbnail_bytes, content_type='image/jpeg')
+            else:
+                return web.json_response({'error': 'No thumbnail available'}, status=404)
     except Exception as e:
         return web.json_response({'error': str(e)}, status=500)
 
